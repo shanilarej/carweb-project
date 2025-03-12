@@ -6,9 +6,7 @@ pipeline {
     }
 
     environment {
-        AWS_ACCESS_KEY_ID      = credentials('aws-access-key-id')
-        AWS_SECRET_ACCESS_KEY  = credentials('aws-secret-access-key')
-        AWS_DEFAULT_REGION     = 'us-east-1'  // Set AWS region
+       AWS_ACCESS_KEY_ID = credentials('jen4')
     }
 
     stages {
@@ -16,7 +14,8 @@ pipeline {
             steps {
                 script {
                     // Checkout application code from the specified Git repository
-                    checkout([$class: 'GitSCM', branches: [[name: '*/main']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'jenkins-git', url: 'https://github.com/arunawsdevops/Car-web.git']]])
+                
+               checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[credentialsId: 'git-pass', url: 'https://github.com/shanilarej/carweb-project.git']])
                 }
             }
         }
@@ -30,7 +29,7 @@ pipeline {
             }
         }
 
-        stage('Push to Docker Hub') {
+      /*  stage('Push to Docker Hub') {
             steps {
                 script {
                     // Assuming 'dockerhub-devops' is the ID of your Docker Hub credentials
@@ -58,7 +57,7 @@ pipeline {
 
                     }
                 }
-            }
+            } */
         }
     }
 }
