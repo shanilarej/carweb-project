@@ -24,7 +24,7 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image
-                    sh " sudo docker build -t ${params.DOCKER_IMAGE_NAME}:latest . -f Dockerfile"
+                    sh " sudo docker build -t ${params.DOCKER_IMAGE_NAME}:latest -f Dockerfile ."
                 }
             }
         }
