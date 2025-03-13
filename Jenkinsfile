@@ -24,7 +24,6 @@ pipeline {
             steps {
                 script {
                     // Build the Docker image
-                    sh" sudo usermod -a -G docker ec2-user"
                     sh "  docker build -t ${params.DOCKER_IMAGE_NAME}:latest -f Dockerfile ."
                 }
             }
