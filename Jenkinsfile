@@ -29,23 +29,25 @@ pipeline {
             }
         }
 
-      /*  stage('Push to Docker Hub') {
+        stage('Push to Docker Hub') {
             steps {
                 script {
                     // Assuming 'dockerhub-devops' is the ID of your Docker Hub credentials
-                    withCredentials([usernamePassword(credentialsId: 'dockerhub-devops', passwordVariable: 'DOCKER_HUB_PASSWORD', usernameVariable: 'DOCKER_HUB_USERNAME')]) {
+                    withCredentials([usernamePassword(credentialsId: 'git-pass', passwordVariable: 'pass', usernameVariable: 'user1')]) {
+    // some block
+} {
                         // Log in to Docker Hub using provided credentials
-                        sh "echo '${DOCKER_HUB_PASSWORD}' | docker login -u ${DOCKER_HUB_USERNAME} --password-stdin"
+                        sh "echo '${pass}' | docker login -u ${user1} --password-stdin"
                         
                         // Tag and push the built Docker image to Docker Hub
-                        sh "docker tag ${params.DOCKER_IMAGE_NAME}:latest ${DOCKER_HUB_USERNAME}/${params.DOCKER_IMAGE_NAME}:latest"
-                        sh "docker push ${DOCKER_HUB_USERNAME}/${params.DOCKER_IMAGE_NAME}:latest"
+                        sh "docker tag ${params.DOCKER_IMAGE_NAME}:latest ${user1}/${params.DOCKER_IMAGE_NAME}:latest"
+                        sh "docker push ${user1}/${params.DOCKER_IMAGE_NAME}:latest"
                     }
                 }
             }
         }
 
-        stage('Deployment to EKS-cluster') {
+      /*  stage('Deployment to EKS-cluster') {
             steps {
                 script {
                     withKubeConfig(caCertificate: '', clusterName: '', contextName: '', credentialsId: 'EKS-K8', namespace: '', restrictKubeConfigAccess: false, serverUrl: '') {
