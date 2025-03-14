@@ -33,15 +33,15 @@ pipeline {
             steps {
                 script {
                     // Assuming 'dockerhub-devops' is the ID of your Docker Hub credentials
-                    withCredentials([usernamePassword(credentialsId: 'git-pass', passwordVariable: 'pass', usernameVariable: 'user1')]) {
+                    withCredentials([usernamePassword(credentialsId: 'git-pass', passwordVariable: 'pass2', usernameVariable: 'user2')]) {
     // some block
 
                         // Log in to Docker Hub using provided credentials
-                        sh "echo '${pass}' | docker login -u ${user1} --password-stdin"
+                        sh "echo '${pass2}' | docker login -u ${user2} --password-stdin"
                         
                         // Tag and push the built Docker image to Docker Hub
-                        sh "docker tag ${params.DOCKER_IMAGE_NAME}:latest ${user1}/${params.DOCKER_IMAGE_NAME}:latest"
-                        sh "docker push ${user1}/${params.DOCKER_IMAGE_NAME}:latest"
+                        sh "docker tag ${params.DOCKER_IMAGE_NAME}:latest ${user2}/${params.DOCKER_IMAGE_NAME}:latest"
+                        sh "docker push ${user2}/${params.DOCKER_IMAGE_NAME}:latest"
                     }
                 }
             }
