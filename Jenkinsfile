@@ -35,7 +35,7 @@ pipeline {
                     // Assuming 'dockerhub-devops' is the ID of your Docker Hub credentials
                     withCredentials([usernamePassword(credentialsId: 'git-pass', passwordVariable: 'pass', usernameVariable: 'user1')]) {
     // some block
-} {
+
                         // Log in to Docker Hub using provided credentials
                         sh "echo '${pass}' | docker login -u ${user1} --password-stdin"
                         
@@ -45,7 +45,7 @@ pipeline {
                     }
                 }
             }
-        }
+        }}
 
       /*  stage('Deployment to EKS-cluster') {
             steps {
