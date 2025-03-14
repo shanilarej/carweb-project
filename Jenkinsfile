@@ -33,7 +33,7 @@ pipeline {
             steps {
                 script {
                     // Assuming 'dockerhub-devops' is the ID of your Docker Hub credentials
-                    withCredentials([usernamePassword(credentialsId: 'git-pass', passwordVariable: 'pass2', usernameVariable: 'user2')]) {
+                    withCredentials([usernamePassword(credentialsId: 'dockerhub-devops', passwordVariable: 'pass2', usernameVariable: 'user2')]) {
     // some block
 
                         // Log in to Docker Hub using provided credentials
