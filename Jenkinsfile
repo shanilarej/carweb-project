@@ -45,7 +45,7 @@ pipeline {
                     }
                 }
             }
-        }}
+        }
 
       /*  stage('Deployment to EKS-cluster') {
             steps {
